@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  classmark: 9.99
+  testmark: 9.99
+  enrollment_id: 
+  term_id: 
+
+two:
+  classmark: 9.99
+  testmark: 9.99
+  enrollment_id: 
+  term_id: 

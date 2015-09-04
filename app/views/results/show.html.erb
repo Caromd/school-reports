@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Classmark:</strong>
+  <%= @result.classmark %>
+</p>
+
+<p>
+  <strong>Testmark:</strong>
+  <%= @result.testmark %>
+</p>
+
+<p>
+  <strong>Enrollment:</strong>
+  <%= @result.enrollment %>
+</p>
+
+<p>
+  <strong>Term:</strong>
+  <%= @result.term %>
+</p>
+
+<%= link_to 'Edit', edit_result_path(@result) %> |
+<%= link_to 'Back', results_path %>
