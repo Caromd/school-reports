@@ -1,14 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Workspace</title>
+  <title>School Marks</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css" rel="stylesheet"></link>
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"></link>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
-
-<%= yield %>
-
+  <header>
+    <div class="wrapper clearfix">
+      <div id="logo">
+        <%= link_to "School Marks", root_path %>
+      </div>
+      <nav>
+        <%= link_to "Students", students_path %>
+        <%= link_to "Subjects", subjects_path %>
+        <%= link_to "Years", schoolyears_path %>
+        <%= link_to "Terms", terms_path %>
+        <%= link_to "Enrollment", enrollments_path %>
+        <%= link_to "Results", results_path %>
+      </nav>
+    </div>
+  </header>
+  <p class="notice"> <%= notice %> </p>
+  <p class="alert"> <%= alert %> </p>
+  <div class="wrapper">
+    <%= yield %>
+  </div>
 </body>
-</html>
