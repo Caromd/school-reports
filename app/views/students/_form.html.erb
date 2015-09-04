@@ -1,6 +1,6 @@
-<%= form_for(@student) do |f| %>
-  <%= f.input :firstname %><br>
-  <%= f.input :surname %><br>
-  <%= f.input :dob %><br>
-  <%= f.button :submit %>
+<%= simple_form_for(@student) do |f| %>
+  <%= f.input :firstname, label: 'First Name'%> <br>
+  <%= f.input :surname, label: 'Surname' %> <br>
+  <%= f.input :dob, label: 'Date of Birth', as: :date, start_year: Date.today.year - 18, end_year: Date.today.year - 6, order: [:day, :month, :year] %> <br>
+  <%= f.button :submit %> <br>
 <% end %>

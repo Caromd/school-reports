@@ -1,6 +1,6 @@
-<%= form_for(@schoolyear) do |f| %>
+<%= simple_form_for(@schoolyear) do |f| %>
 
-  <%= f.input :year %><br>
-  <%= f.button :submit %>
+  <%= f.input :year, :collection => ['2015','2016','2017','2018'] %><br>
+  <%= f.submit 'Create School Year' %>
 
 <% end %>
