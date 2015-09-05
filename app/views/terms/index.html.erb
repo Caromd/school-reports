@@ -1,23 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Terms</h1>
+<h1>TERMS</h1>
 
-<table>
-  <tbody>
+<%= simple_form_for([@term, @terms.build]) do |f| %>
+  <%= f.input :term, :collection => ['1','2','3','4'], prompt: "Enter Term", label: false %>
+  <%= f.input :startdate, :as => :date, :start_year => Date.today.year, :end_year => Date.today.year + 5, :start_month => 1, :order => [ :day, :month, :year], :label => 'Start Date' %>
+  <%= f.input :enddate, :as => :date, :start_year => Date.today.year, :end_year => Date.today.year + 5, :order => [ :day, :month, :year], :label => 'End Date' %>
+  <%= f.association :schoolyear, collection: Schoolyear.order(:year), prompt: "Choose a School Year", label: false %>
+  <%= f.button :submit %>
+<% end %>
+<br>
+<div class="table-responsive">
+  <table class="table">
     <% @terms.each do |term| %>
       <tr>
-        <td><%= term.term %></td>
-        <td><%= term.startdate %></td>
-        <td><%= term.enddate %></td>
-        <td><%= term.schoolyear %></td>
-        <td><%= link_to 'Show', term %></td>
-        <td><%= link_to 'Edit', edit_term_path(term) %></td>
-        <td><%= link_to 'Destroy', term, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="col-md-1"><%= link_to term.term, edit_term_path(term) %></td>
+        <td class="col-md-2"><%= term.startdate %></td>
+        <td class="col-md-2"><%= term.enddate %></td>
+        <td class="col-md-1"><%= term.schoolyear %></td>
+        <td class="col-md-1"> <%= link_to(content_tag(:i,nil,class: 'fa fa-trash-o'), term, method: :delete, data: { confirm: "Are you sure?" }) %> </td>
       </tr>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Term', new_term_path %>
+  </table>
+</div>

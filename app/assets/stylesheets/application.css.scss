@@ -25,6 +25,10 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 100;
 }
 
+h1 {font-size: 2em;}
+
+.container {width: 50%;}
+
 .wrapper {
 	width: 80%;
 	margin: 0 auto;
@@ -39,24 +43,26 @@ h1, h2, h3, h4, h5, h6 {
 	clear: both;
 }
 
-.button {
+#button {
 	border: 1px solid #9B9B9B;
 	padding: .7rem 1.25rem;
 	border-radius: .3rem;
 	outline: none;
-	background: white;
-	color: #9B9B9B;
+	background: blue;
+	color: white;
 }
 
 header {
 	width: 100%;
 	padding: 2rem 0;
 	border-bottom: 1px solid #E4E4E4;
+	background-color: blue;
+	color: white;
 	#logo {
 		float: left;
-		font-size: 1.75rem;
+		font-size: 3rem;
 		a {
-			color: #333233;
+			color: white;
 			text-decoration: none;
 			&:hover {
 				color: #50A7C7;
@@ -65,10 +71,11 @@ header {
 	}
 	nav {
 		float: right;
+		font-size: 1.2rem;
 		a {
 			margin-left: 1.5rem;
 			line-height: 2;
-			color: #9B9B9B;
+			color: white;
 			text-decoration: none;
 			&:hover {
 				color: #50A7C7;

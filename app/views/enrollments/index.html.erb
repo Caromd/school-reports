@@ -1,22 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Enrollments</h1>
+<h1>ENROLLMENTS</h1>
 
-<table>
-  <tbody>
+<%= simple_form_for([@enrollment, @enrollments.build]) do |f| %>
+  <%= f.association :student, collection: Student.order(:firstname), prompt: "Choose a student", label: false %>
+  <%= f.association :subject, collection: Subject.order(:name), prompt: "Choose a subject", label: false %>
+  <%= f.association :schoolyear, collection: Schoolyear.order(:year), prompt: "Choose a school year", label: false %>
+  <%= f.button :submit, :id => "button" %>
+<% end %>
+<br>
+<div class="table-responsive">
+  <table class="table">
     <% @enrollments.each do |enrollment| %>
       <tr>
-        <td><%= enrollment.student %></td>
-        <td><%= enrollment.subject %></td>
-        <td><%= enrollment.schoolyear %></td>
-        <td><%= link_to 'Show', enrollment %></td>
-        <td><%= link_to 'Edit', edit_enrollment_path(enrollment) %></td>
-        <td><%= link_to 'Destroy', enrollment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="col-md-1"> <%= link_to enrollment.student, edit_enrollment_path(enrollment)%></td>
+        <td class="col-md-1"> <%= enrollment.subject %></td>
+        <td class="col-md-1"> <%= enrollment.schoolyear %></td>
+        <td class="col-md-1"> <%= link_to(content_tag(:i,nil,class: 'fa fa-trash-o'), enrollment, method: :delete, data: { confirm: "Are you sure?" }) %> </td>
       </tr>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Enrollment', new_enrollment_path %>
+  </table>
+</div>

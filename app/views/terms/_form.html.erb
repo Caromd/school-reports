@@ -2,6 +2,6 @@
   <%= f.input :term, :collection => ['1','2','3','4'] %>
   <%= f.input :startdate, :as => :date, :start_year => Date.today.year, :end_year => Date.today.year + 5, :start_month => 1, :order => [ :day, :month, :year], :label => 'Start Date' %>
   <%= f.input :enddate, :as => :date, :start_year => Date.today.year, :end_year => Date.today.year + 5, :order => [ :day, :month, :year], :label => 'End Date' %>
-  <%= f.input :schoolyear_id %>
+  <%= f.association :schoolyear, collection: Schoolyear.order(:year), prompt: "Choose a school year", label: false %>
   <%= f.button :submit %>
 <% end %>

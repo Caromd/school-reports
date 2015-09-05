@@ -1,7 +1,7 @@
 <%= simple_form_for(@result) do |f| %>
-  <%= f.input :classmark %><br>
-  <%= f.input :testmark %>
-  <%= f.input :enrollment_id %><br>
-  <%= f.input :term_id %><br>
+  <%= f.input :classmark, label: false, placeholder: "Class Mark" %>
+  <%= f.input :testmark, label: false, placeholder: "Test Mark" %>
+  <%= f.association :enrollment, collection: Enrollment.all, prompt: "Choose enrollment", label: false %><br>
+  <%= f.association :term, collection: Term.order(:term), prompt: "Choose a term", label: false %><br>
   <%= f.button :submit %>
 <% end %>

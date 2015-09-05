@@ -1,20 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Subjects</h1>
+<h1>SUBJECTS</h1>
 
-<table>
-  <tbody>
-    <% @subjects.each do |subject| %>
-      <tr>
-        <td><%= subject.name %></td>
-        <td><%= link_to 'Show', subject %></td>
-        <td><%= link_to 'Edit', edit_subject_path(subject) %></td>
-        <td><%= link_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= simple_form_for([@subject, @subjects.build]) do |f| %>
+  <%= f.input :name, label: false, placeholder: "Enter Subject Name" %>
+  <%= f.button :submit, :id => "button" %>
+<% end %>
 
 <br>
-
-<%= link_to 'New Subject', new_subject_path %>
+<div class="table-responsive">
+  <table class="table">
+    <% @subjects.each do |subject| %>
+      <tr>
+        <td class="col-md-1"><%= link_to subject.name, edit_subject_path(subject) %></td>
+        <td class="col-md-1"> <%= link_to(content_tag(:i,nil,class: 'fa fa-trash-o'), subject, method: :delete, data: { confirm: "Are you sure?" }) %> </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

@@ -1,22 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Students</h1>
+<h1 class="page_title">STUDENTS</h1>
 
-<table>
-  <tbody>
-    <% @students.each do |student| %>
-      <tr>
-        <td><%= student.firstname %></td>
-        <td><%= student.surname %></td>
-        <td><%= student.dob %></td>
-        <td><%= link_to 'Show', student %></td>
-        <td><%= link_to 'Edit', edit_student_path(student) %></td>
-        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= simple_form_for([@student, @students.build]) do |f| %>
+  <%= f.input :firstname, label: false, placeholder: "Enter First Name" %>
+  <%= f.input :surname, label: false, placeholder: "Enter Surname" %>
+  <%= f.input :dob, label: "Date of Birth", as: :date, start_year: Date.today.year - 18, end_year: Date.today.year - 6, order: [:day, :month, :year] %>
+  <%= f.button :submit, :id => "button"  %> <br>
+<% end %>
 
 <br>
 
-<%= link_to 'New Student', new_student_path %>
+<div class="table-responsive">
+  <table class="table">
+    <% @students.each do |student| %>
+      <tr>
+	       <td class="col-md-1"> <%= link_to student.surname, edit_student_path(student)%></td>
+        <td class="col-md-1"> <%= student.firstname %></td>
+        <td class="col-md-1"> <%= student.dob %></td>
+        <td class="col-md-1"> <%= link_to(content_tag(:i,nil,class: 'fa fa-trash-o'), student, method: :delete, data: { confirm: "Are you sure?" }) %> </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
