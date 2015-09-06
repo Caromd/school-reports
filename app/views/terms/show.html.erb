@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Year:</strong>
+  <%= @term.year %>
+</p>
+
+<p>
   <strong>Term:</strong>
   <%= @term.term %>
 </p>
@@ -13,11 +18,6 @@
 <p>
   <strong>Enddate:</strong>
   <%= @term.enddate %>
-</p>
-
-<p>
-  <strong>Schoolyear:</strong>
-  <%= @term.schoolyear %>
 </p>
 
 <%= link_to 'Edit', edit_term_path(@term) %> |

@@ -1,4 +1,5 @@
 class Result < ActiveRecord::Base
-  belongs_to :enrollment
+  belongs_to :student
+  belongs_to :subject
   belongs_to :term
 end

@@ -1,23 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Results</h1>
+<h1>RESULTS</h1>
 
-<table>
-  <tbody>
+<%= simple_form_for([@result, @results.build]) do |f| %>
+  <%= f.input :classmark, label: false, placeholder: "Class Mark" %>
+  <%= f.input :testmark, label: false, placeholder: "Test Mark" %>
+  <%= f.association :student, collection: Student.order(:surname), prompt: "Choose student", label: false %><br>
+  <%= f.association :subject, collection: Subject.order(:name), prompt: "Choose subject", label: false %><br>
+  <%= f.association :term, collection: Term.order(:term), prompt: "Choose term", label: false %><br>
+  <%= f.button :submit %>
+<% end %>
+<br>
+<div class="table-responsive">
+  <table class="table">
     <% @results.each do |result| %>
       <tr>
-        <td><%= result.classmark %></td>
-        <td><%= result.testmark %></td>
-        <td><%= result.enrollment %></td>
-        <td><%= result.term %></td>
-        <td><%= link_to 'Show', result %></td>
-        <td><%= link_to 'Edit', edit_result_path(result) %></td>
-        <td><%= link_to 'Destroy', result, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="col-md-1"><%= result.classmark %></td>
+        <td class="col-md-1"><%= result.testmark %></td>
+        <td class="col-md-1"><%= link_to result.student, edit_result_path(result) %></td>
+        <td class="col-md-1"><%= link_to result.subject, edit_result_path(result) %></td>
+        <td class="col-md-1"><%= link_to result.term, edit_result_path(result) %></td>
+        <td class="col-md-1"><%= link_to 'Destroy', result, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Result', new_result_path %>
+  </table>
+</div>

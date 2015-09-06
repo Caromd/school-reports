@@ -1,6 +1,0 @@
-<%= simple_form_for(@enrollment) do |f| %>
-  <%= f.association :student, collection: Student.order(:firstname), prompt: "Choose a student", label: false %>
-  <%= f.association :subject, collection: Subject.order(:name), prompt: "Choose a subject", label: false %>
-  <%= f.association :schoolyear, collection: Schoolyear.order(:year), prompt: "Choose a school year", label: false %>
-  <%= f.button :submit %>
-<% end %>

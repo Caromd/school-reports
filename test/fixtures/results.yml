@@ -3,11 +3,13 @@
 one:
   classmark: 9.99
   testmark: 9.99
-  enrollment_id: 
+  student_id: 
+  subject_id: 
   term_id: 
 
 two:
   classmark: 9.99
   testmark: 9.99
-  enrollment_id: 
+  student_id: 
+  subject_id: 
   term_id: 

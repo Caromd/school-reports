@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   resources :results
   resources :terms
-  resources :enrollments
-  resources :schoolyears
   resources :subjects
   resources :students
   # The priority is based upon order of creation: first created -> highest priority.

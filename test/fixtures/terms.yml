@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  term: 1
-  startdate: 2015-09-04
-  enddate: 2015-09-04
-  schoolyear_id: 
+  year: MyString
+  term: MyString
+  startdate: 2015-09-06
+  enddate: 2015-09-06
 
 two:
-  term: 1
-  startdate: 2015-09-04
-  enddate: 2015-09-04
-  schoolyear_id: 
+  year: MyString
+  term: MyString
+  startdate: 2015-09-06
+  enddate: 2015-09-06
