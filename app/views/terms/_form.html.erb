@@ -1,14 +1,7 @@
 <%= simple_form_for(@term) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :year %>
-    <%= f.input :term %>
-    <%= f.input :startdate %>
-    <%= f.input :enddate %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+  <%= f.input :year, prompt: "Enter School Year", :collection => ['2015','2016','2017','2018'], label: false  %>
+  <%= f.input :term, :collection => ['1','2','3','4'], prompt: "Enter Term", label: false %>
+  <%= f.input :startdate, :as => :date, :start_year => Date.today.year, :end_year => Date.today.year + 5, :start_month => 1, :order => [ :day, :month, :year], :label => 'Start Date' %>
+  <%= f.input :enddate, :as => :date, :start_year => Date.today.year, :end_year => Date.today.year + 5, :order => [ :day, :month, :year], :label => 'End Date' %>
+  <%= f.button :submit, :id => "button" %>
 <% end %>

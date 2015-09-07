@@ -17,17 +17,26 @@
 @import "bootstrap";
 
 body {
-	font-family: "Proxima Nova";
+	font-family: 'Raleway', sans-serif;
 	font-weight: 100;
+	color: white;
+  background: -webkit-linear-gradient(90deg, #2c3e50 10%, #3498db 90%); /* Chrome 10+, Saf5.1+ */
+  background:    -moz-linear-gradient(90deg, #2c3e50 10%, #3498db 90%); /* FF3.6+ */
+  background:     -ms-linear-gradient(90deg, #2c3e50 10%, #3498db 90%); /* IE10 */
+  background:      -o-linear-gradient(90deg, #2c3e50 10%, #3498db 90%); /* Opera 11.10+ */
+  background:         linear-gradient(90deg, #2c3e50 10%, #3498db 90%); /* W3C */
+        
+        
 }
 
 h1, h2, h3, h4, h5, h6 {
+	color: #090A3A;
 	font-weight: 100;
 }
 
 h1 {font-size: 2em;}
 
-.container {width: 50%;}
+.container {width: 60%;}
 
 .wrapper {
 	width: 80%;
@@ -48,7 +57,7 @@ h1 {font-size: 2em;}
 	padding: .7rem 1.25rem;
 	border-radius: .3rem;
 	outline: none;
-	background: blue;
+	background: #3783A7;
 	color: white;
 }
 
@@ -56,7 +65,7 @@ header {
 	width: 100%;
 	padding: 2rem 0;
 	border-bottom: 1px solid #E4E4E4;
-	background-color: blue;
+	background-color: #3783A7;
 	color: white;
 	#logo {
 		float: left;
@@ -84,4 +93,4 @@ header {
 	}
 }
 
-i#trash.fa.fa-trash-o {width: 5px; color: red;}
+a {color: #EBF1F4};

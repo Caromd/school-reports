@@ -5,10 +5,10 @@
 <%= simple_form_for([@result, @results.build]) do |f| %>
   <%= f.input :classmark, label: false, placeholder: "Class Mark" %>
   <%= f.input :testmark, label: false, placeholder: "Test Mark" %>
-  <%= f.association :student, collection: Student.order(:surname), prompt: "Choose student", label: false %><br>
-  <%= f.association :subject, collection: Subject.order(:name), prompt: "Choose subject", label: false %><br>
-  <%= f.association :term, collection: Term.order(:term), prompt: "Choose term", label: false %><br>
-  <%= f.button :submit %>
+  <%= f.association :student, collection: Student.order(:surname), prompt: "Choose student", label: false %>
+  <%= f.association :subject, collection: Subject.order(:name), prompt: "Choose subject", label: false %>
+  <%= f.association :term, collection: Term.order(:term), prompt: "Choose term", label: false %>
+  <%= f.button :submit, :id => "button" %>
 <% end %>
 <br>
 <div class="table-responsive">
