@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<p id="alert"><%= alert %></p>
 
 <h1 class="page_title">STUDENTS</h1>
 
@@ -15,10 +16,12 @@
   <table class="table">
     <% @students.each do |student| %>
       <tr>
-	       <td class="col-md-1"> <%= link_to student.surname, edit_student_path(student)%></td>
+	      <td class="col-md-1"> <%= student.surname%></td>
         <td class="col-md-1"> <%= student.firstname %></td>
         <td class="col-md-1"> <%= student.dob %></td>
-        <td class="col-md-1"> <%= link_to(content_tag(:i,nil,class: 'fa fa-trash-o'), student, method: :delete, data: { confirm: "Are you sure?" }) %> </td>
+        <td class="col-md-1"></td>
+        <td class="col-md-1"> <%= link_to 'Edit', edit_student_path(student)%></td>
+        <td class="col-md-1"> <%= link_to 'Delete', student, method: :delete, data: { confirm: "Are you sure?" } %> </td>
       </tr>
     <% end %>
   </table>

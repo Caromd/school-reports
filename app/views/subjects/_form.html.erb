@@ -1,4 +1,4 @@
 <%= simple_form_for(@subject) do |f| %>
-  <%= f.input :name %><br>
-  <%= f.button :submit %>
+  <%= f.input :name, label: false, placeholder: "Enter Subject Name" %>
+  <%= f.button :submit, :id => "button" %>
 <% end %>

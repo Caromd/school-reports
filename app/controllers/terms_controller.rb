@@ -56,7 +56,7 @@ class TermsController < ApplicationController
   def destroy
     @term.destroy
     respond_to do |format|
-      format.html { redirect_to terms_url, notice: 'Term was successfully destroyed.' }
+      format.html { redirect_to terms_url, notice: 'Term was successfully deleted.' }
       format.json { head :no_content }
     end
   end
