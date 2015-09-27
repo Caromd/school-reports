@@ -2,8 +2,8 @@
 
 <h1>SUBJECTS</h1>
 
-<%= simple_form_for([@subject, @subjects.build]) do |f| %>
-  <%= f.input :name, label: false, placeholder: "Enter Subject Name" %>
+<%= simple_form_for([@subject, @subjects.build],html: { autocomplete: 'off' }) do |f| %>
+  <%= f.input :name, label: false, placeholder: "Enter Subject Name", :autocomplete => :off  %>
   <%= f.button :submit, :id => "button" %>
 <% end %>
 
@@ -14,8 +14,8 @@
       <tr>
         <td class="col-md-1"><%= subject.name %></td>
         <td class="col-md-1"></td>
-        <td class="col-md-1"> <%= link_to 'Edit', edit_subject_path(subject)%></td>
-        <td class="col-md-1"> <%= link_to 'Delete', subject, method: :delete, data: { confirm: "Are you sure?" } %> </td>
+        <td class="col-md-1"> <i><%= link_to 'Edit', edit_subject_path(subject)%></i></td>
+        <td class="col-md-1"> <i><%= link_to 'Delete', subject, method: :delete, data: { confirm: "Are you sure?" } %> </i></td>
       </tr>
     <% end %>
   </table>

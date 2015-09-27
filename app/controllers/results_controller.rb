@@ -4,7 +4,7 @@ class ResultsController < ApplicationController
   # GET /results
   # GET /results.json
   def index
-    @results = Result.all
+    @results = Result.all.order('term_id, student_id desc')
   end
 
   # GET /results/1
@@ -28,8 +28,8 @@ class ResultsController < ApplicationController
 
     respond_to do |format|
       if @result.save
-        format.html { redirect_to @result, notice: 'Result was successfully created.' }
-        format.json { render :show, status: :created, location: @result }
+        format.html { redirect_to results_path, notice: 'Result was successfully created.' }
+        format.json { render :index, status: :created, location: @result }
       else
         format.html { render :new }
         format.json { render json: @result.errors, status: :unprocessable_entity }
@@ -42,8 +42,8 @@ class ResultsController < ApplicationController
   def update
     respond_to do |format|
       if @result.update(result_params)
-        format.html { redirect_to @result, notice: 'Result was successfully updated.' }
-        format.json { render :show, status: :ok, location: @result }
+        format.html { redirect_to results_path, notice: 'Result was successfully updated.' }
+        format.json { render :index, status: :ok, location: @result }
       else
         format.html { render :edit }
         format.json { render json: @result.errors, status: :unprocessable_entity }
@@ -69,6 +69,6 @@ class ResultsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def result_params
-      params.require(:result).permit(:classmark, :testmark, :student_id, :subject_id, :term_id)
+      params.require(:result).permit(:classmark, :testmark, :student_id, :subject_id, :term_id, :comment)
     end
 end

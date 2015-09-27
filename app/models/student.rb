@@ -1,5 +1,5 @@
 class Student < ActiveRecord::Base
-    has_many :enrollments
+    has_many :results
     validates :firstname, presence: true
     validates :surname, presence: true
     def to_label

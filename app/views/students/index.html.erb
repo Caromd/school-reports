@@ -3,21 +3,17 @@
 
 <h1 class="page_title">STUDENTS</h1>
 
-<%= simple_form_for([@student, @students.build]) do |f| %>
-  <%= f.input :firstname, label: false, placeholder: "Enter First Name" %>
-  <%= f.input :surname, label: false, placeholder: "Enter Surname" %>
-  <%= f.input :dob, label: "Date of Birth", as: :date, start_year: Date.today.year - 18, end_year: Date.today.year - 6, order: [:day, :month, :year] %>
-  <%= f.button :submit, :id => "button"  %> <br>
-<% end %>
-
 <br>
 
 <div class="table-responsive">
   <table class="table">
+    <tr>
+      <th><%= "NAME" %></th>
+      <th><%= "DATE OF BIRTH" %></th>
+    </tr>
     <% @students.each do |student| %>
       <tr>
-	      <td class="col-md-1"> <%= student.surname%></td>
-        <td class="col-md-1"> <%= student.firstname %></td>
+        <td class="col-md-2"> <%= student.firstname + " " + student.surname %></td>
         <td class="col-md-2"> <%= student.dob %></td>
         <td class="col-md-1"></td>
         <td class="col-md-1"> <i> <%= link_to 'Edit', edit_student_path(student)%> </i></td> 
@@ -26,3 +22,5 @@
     <% end %>
   </table>
 </div>
+<br>
+<%= link_to 'New Student', new_student_path, id: "button" %>

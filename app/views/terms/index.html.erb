@@ -2,25 +2,26 @@
 
 <h1>TERMS</h1>
 
-<%= simple_form_for([@term, @terms.build]) do |f| %>
-  <%= f.input :year, prompt: "Enter School Year", :collection => ['2015','2016','2017','2018'], label: false  %>
-  <%= f.input :term, :collection => ['1','2','3','4'], prompt: "Enter Term", label: false %>
-  <%= f.input :startdate, :as => :date, :start_year => Date.today.year, :end_year => Date.today.year + 5, :start_month => 1, :order => [ :day, :month, :year], :label => 'Start Date' %>
-  <%= f.input :enddate, :as => :date, :start_year => Date.today.year, :end_year => Date.today.year + 5, :order => [ :day, :month, :year], :label => 'End Date' %>
-  <%= f.button :submit, :id => "button" %>
-<% end %>
 <br>
 <div class="table-responsive">
   <table class="table">
+    <tr>
+      <th><%= "YEAR" %></th>
+      <th><%= "TERM" %></th>
+      <th><%= "START DATE" %></th>
+      <th><%= "END DATE" %></th>
+    </tr>
     <% @terms.each do |term| %>
       <tr>
         <td class="col-md-1"><%= term.year %></td>
         <td class="col-md-1"><%= term.term %></td>
         <td class="col-md-2"><%= term.startdate %></td>
         <td class="col-md-2"><%= term.enddate %></td>
-        <td class="col-md-1"> <%= link_to 'Edit', edit_term_path(term)%></td>
-        <td class="col-md-1"> <%= link_to 'Delete', term, method: :delete, data: { confirm: "Are you sure?" } %> </td>
+        <td class="col-md-1"><i> <%= link_to 'Edit', edit_term_path(term)%></i></td>
+        <td class="col-md-1"><i> <%= link_to 'Delete', term, method: :delete, data: { confirm: "Are you sure?" } %> </i></td>
       </tr>
     <% end %>
   </table>
 </div>
+<br>
+<%= link_to 'New Term', new_term_path, id: "button" %>

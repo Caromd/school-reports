@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150906164446) do
+ActiveRecord::Schema.define(version: 20150927133052) do
 
   create_table "results", force: :cascade do |t|
     t.decimal  "classmark"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20150906164446) do
     t.integer  "term_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text     "comment"
   end
 
   add_index "results", ["student_id"], name: "index_results_on_student_id"

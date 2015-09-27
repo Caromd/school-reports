@@ -94,3 +94,17 @@ header {
 }
 
 a {color: #EBF1F4};
+
+#right {
+  align: right;
+}
+
+form input[type='number']::-webkit-outer-spin-button,
+form input[type='number']::-webkit-inner-spin-button {
+   -webkit-appearance: none;
+   margin: 0;
+}
+
+abbr[title="required"] {
+  display: none;
+}

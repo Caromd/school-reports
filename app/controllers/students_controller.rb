@@ -1,10 +1,17 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
 
+  def download
+    require "prawn"
+    Prawn::Document.generate("hello.pdf") do
+      text "Hello World!"
+    end
+  end
+
   # GET /students
   # GET /students.json
   def index
-    @students = Student.all
+    @students = Student.all.order('firstname asc')
   end
 
   # GET /students/1
