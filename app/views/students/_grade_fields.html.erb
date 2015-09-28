@@ -1,0 +1,7 @@
+<div class="form-inline clearfix">
+  <div class="nested-fields">
+      <%= f.input :year, prompt: "Enter School Year", :collection => ['2015','2016','2017','2018'], label: false  %>
+      <%= f.input :grade, collection: '1'..'12', prompt: "Enter Grade", label: false %>
+      <%= link_to_remove_association "Remove", f, id: "button" %>
+  </div>
+</div>
