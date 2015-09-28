@@ -4,5 +4,7 @@
   <%= f.input :dob, label: "Date of Birth", as: :date, start_year: Date.today.year - 18, end_year: Date.today.year - 6, order: [:day, :month, :year] %>
   <%= f.button :submit, :id => "button"  %> <br>
 <% end %>
-
-<%= link_to "Download Now", download_path, :class => "btn btn-large" %>
+<br>
+<%= link_to "Download Report", download_path, id: "button" %>
+<br><br>
+<%= link_to "Grades", grades_student_path(@student.id), id: "button" %>
