@@ -5,6 +5,6 @@ class Student < ActiveRecord::Base
     validates :firstname, presence: true
     validates :surname, presence: true
     def to_label
-        "#{firstname}"
+        "#{firstname} #{surname}"
     end
 end

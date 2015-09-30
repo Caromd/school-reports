@@ -3,7 +3,7 @@
 <h1>SUBJECTS</h1>
 
 <%= simple_form_for([@subject, @subjects.build],html: { autocomplete: 'off' }) do |f| %>
-  <%= f.input :name, label: false, placeholder: "Enter Subject Name", :autocomplete => :off  %>
+  <%= f.input :name, label: false, placeholder: "Enter Subject Name"%>
   <%= f.button :submit, :id => "button" %>
 <% end %>
 

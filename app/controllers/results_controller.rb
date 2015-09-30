@@ -15,6 +15,7 @@ class ResultsController < ApplicationController
   # GET /results/new
   def new
     @result = Result.new
+    @terms = Term.all
   end
 
   # GET /results/1/edit
