@@ -1,5 +1,5 @@
 <%= simple_form_for(@result) do |f| %>
-  <%= f.association :term, collection: @terms, prompt: "Choose term", label: "TERM" %>
+  <%= f.association :term, collection: Term.order(:year), prompt: "Choose term", label: "TERM" %>
   <%= f.association :student, collection: Student.order(:surname), prompt: "Choose student", label: "STUDENT" %>
   <%= f.association :subject, collection: Subject.order(:name), prompt: "Choose subject", label: "SUBJECT" %>
   <%= f.input :classmark, label: "CLASS MARK", placeholder: "Class Mark" %>
