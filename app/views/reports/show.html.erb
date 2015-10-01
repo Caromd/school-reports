@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Teacher:</strong>
+  <%= @report.teacher %>
+</p>
+
+<p>
+  <strong>Teacher comment:</strong>
+  <%= @report.teacher_comment %>
+</p>
+
+<p>
+  <strong>Principal:</strong>
+  <%= @report.principal %>
+</p>
+
+<p>
+  <strong>Principal comment:</strong>
+  <%= @report.principal_comment %>
+</p>
+
+<p>
+  <strong>Student:</strong>
+  <%= @report.student %>
+</p>
+
+<p>
+  <strong>Term:</strong>
+  <%= @report.term %>
+</p>
+
+<%= link_to 'Edit', edit_report_path(@report) %> |
+<%= link_to 'Back', reports_path %>

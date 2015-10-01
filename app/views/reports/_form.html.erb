@@ -1,0 +1,16 @@
+<%= simple_form_for(@report,html: { autocomplete: 'off' }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :student, collection: Student.order(:surname), prompt: "Choose student", label: "STUDENT" %>
+    <%= f.association :term, collection: Term.order(:year), prompt: "Choose term", label: "TERM" %>
+    <%= f.input :teacher %>
+    <%= f.input :teacher_comment %>
+    <%= f.input :principal %>
+    <%= f.input :principal_comment %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, :id => "button" %>
+  </div>
+<% end %>

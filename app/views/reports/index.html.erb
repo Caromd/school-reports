@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<h1>REPORTS</h1>
+
+<br>
+<div class="table-responsive">
+  <table class="table">
+    <tr>
+      <th><%= "TERM" %></th>
+      <th><%= "STUDENT" %></th>
+    </tr>
+    <% @reports.each do |report| %>
+      <tr>
+        <td class="col-md-1"><%= report.term.year + "/" + report.term.term%></td>
+        <td class="col-md-2"><%= report.student.firstname + " " + report.student.surname %></td>
+        <td class="col-md-1"> <i><%= link_to 'Edit', edit_report_path(report)%></i></td>
+        <td class="col-md-1"> <i><%= link_to 'Delete', report, method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<br>
+<%= link_to 'New Report', new_report_path, id: "button" %>

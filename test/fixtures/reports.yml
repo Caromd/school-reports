@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  teacher: MyString
+  teacher_comment: MyText
+  principal: MyString
+  principal_comment: MyText
+  student_id: 
+  term_id: 
+
+two:
+  teacher: MyString
+  teacher_comment: MyText
+  principal: MyString
+  principal_comment: MyText
+  student_id: 
+  term_id: 
