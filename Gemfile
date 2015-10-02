@@ -16,6 +16,7 @@ gem 'bootstrap-sass', '~> 3.3.5.1'
 gem 'simple_form', '~> 3.1.1'
 # Prawn gem to generate PDF
 gem 'prawn', '~> 2.0.2'
+gem 'prawn-table', '~> 0.2.2'
 # Cocoon for nested forms (grades nested within students)
 gem 'cocoon', '~> 1.2.6'
 

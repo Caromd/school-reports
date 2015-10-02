@@ -14,6 +14,7 @@
         <td class="col-md-1"><%= report.term.year + "/" + report.term.term%></td>
         <td class="col-md-2"><%= report.student.firstname + " " + report.student.surname %></td>
         <td class="col-md-1"> <i><%= link_to 'Edit', edit_report_path(report)%></i></td>
+        <td class="col-md-1"> <i><%= link_to 'PDF', pdf_path(report) %></i></td>
         <td class="col-md-1"> <i><%= link_to 'Delete', report, method: :delete, data: { confirm: 'Are you sure?' } %></i></td>
       </tr>
     <% end %>

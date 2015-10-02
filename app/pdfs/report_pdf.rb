@@ -1,7 +1,8 @@
 class ReportPdf < Prawn::Document
-  def initialize(reports)
+  def initialize(report)
     super()
-    @reports = products
+    @report = report
+ #   @results = Results.where student_id = report.student_id and term_id = report.term_id
     header
     text_content
     table_content
@@ -9,11 +10,12 @@ class ReportPdf < Prawn::Document
 
   def header
     #This inserts an image in the pdf file and sets the size of the image
-    image "#{Rails.root}/app/assets/images/1000hillsbanner.jpg", width: 530, height: 150
+    image "#{Rails.root}/app/assets/images/1000hillsbanner.jpg", width: 634, height: 105
   end
 
   def text_content
-    # The cursor for inserting content starts on the top left of the page. Here we move it down a little to create more space between the text and the image inserted above
+    # The cursor for inserting content starts on the top left of the page. 
+    # Here we move it down a little to create more space between the text and the image inserted above
     y_position = cursor - 50
 
     # The bounding_box takes the x and y coordinates for positioning its content and some options to style it
@@ -33,18 +35,18 @@ class ReportPdf < Prawn::Document
     # This makes a call to product_rows and gets back an array of data that will populate the columns and rows of a table
     # I then included some styling to include a header and make its text bold. I made the row background colors alternate between grey and white
     # Then I set the table column widths
-    #table product_rows do
-    #  row(0).font_style = :bold
-    #  self.header = true
-    #  self.row_colors = ['DDDDDD', 'FFFFFF']
-    #  self.column_widths = [40, 300, 200]
-    #end
+    table report_rows do
+      row(0).font_style = :bold
+      self.header = true
+      self.row_colors = ['DDDDDD', 'FFFFFF']
+      self.column_widths = [40, 300, 200]
+    end
   end
 
-  def product_rows
-    #[['#', 'Name', 'Price']] +
-    #  @products.map do |product|
-    #  [product.id, product.name, product.price]
-    #end
+  def report_rows
+    [['Teacher', 'Comment']] +
+    @reports.map do |report|
+      [report.teacher, report.teacher_comment]
+    end
   end
 end
