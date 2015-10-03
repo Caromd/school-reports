@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151001111940) do
+ActiveRecord::Schema.define(version: 20151003075137) do
 
   create_table "grades", force: :cascade do |t|
     t.string   "grade"
@@ -37,20 +37,8 @@ ActiveRecord::Schema.define(version: 20151001111940) do
   add_index "reports", ["student_id"], name: "index_reports_on_student_id"
   add_index "reports", ["term_id"], name: "index_reports_on_term_id"
 
-  create_table "results", force: :cascade do |t|
-    t.decimal  "classmark"
-    t.decimal  "testmark"
-    t.integer  "student_id"
-    t.integer  "subject_id"
-    t.integer  "term_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text     "comment"
-  end
-
-  add_index "results", ["student_id"], name: "index_results_on_student_id"
-  add_index "results", ["subject_id"], name: "index_results_on_subject_id"
-  add_index "results", ["term_id"], name: "index_results_on_term_id"
+# Could not dump table "results" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "students", force: :cascade do |t|
     t.string   "firstname"
