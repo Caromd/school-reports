@@ -5,6 +5,7 @@ class CreateTerms < ActiveRecord::Migration
       t.string :term
       t.date :startdate
       t.date :enddate
+      t.boolean :active, :default => true
 
       t.timestamps null: false
     end

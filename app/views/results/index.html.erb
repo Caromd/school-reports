@@ -13,9 +13,11 @@
       <th><%= "TEST MARK" %></th>
     </tr>
     <% @results.each do |result| %>
+      <% @student = Student.find(result.report.student_id) %>
+      <% @term = Term.find(result.report.term_id) %>
       <tr>
-        <td class="col-md-1"><%= result.term.year + "/" + result.term.term%></td>
-        <td class="col-md-2"><%= result.student.firstname + " " + result.student.surname %></td>
+        <td class="col-md-1"><%= @term.year + "/" + @term.term%></td>
+        <td class="col-md-2"><%= @student.firstname + " " + @student.surname %></td>
         <td class="col-md-1"><%= result.subject.name %></td>
         <td class="col-md-1"><%= result.classmark %></td>
         <td class="col-md-1"><%= result.testmark %></td>

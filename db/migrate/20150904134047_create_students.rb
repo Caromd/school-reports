@@ -4,6 +4,7 @@ class CreateStudents < ActiveRecord::Migration
       t.string :firstname
       t.string :surname
       t.date :dob
+      t.boolean :current, :default => true
 
       t.timestamps null: false
     end

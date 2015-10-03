@@ -10,12 +10,13 @@
     <tr>
       <th><%= "NAME" %></th>
       <th><%= "DATE OF BIRTH" %></th>
+      <th><%= "CURRENT?" %></th>
     </tr>
     <% @students.each do |student| %>
       <tr>
         <td class="col-md-2"> <%= student.firstname + " " + student.surname %></td>
         <td class="col-md-2"> <%= student.dob %></td>
-        <td class="col-md-1"></td>
+        <td class="col-md-1"> <%= student.current? ? 'Y' : 'N' %></td>
         <td class="col-md-1"> <i> <%= link_to 'Edit', edit_student_path(student)%> </i></td> 
         <td class="col-md-1"> <i> <%= link_to 'Delete', student, method: :delete, data: { confirm: "Are you sure?" } %> </i></td>
       </tr>

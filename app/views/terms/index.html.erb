@@ -10,6 +10,7 @@
       <th><%= "TERM" %></th>
       <th><%= "START DATE" %></th>
       <th><%= "END DATE" %></th>
+      <th><%= "ACTIVE?" %></th>
     </tr>
     <% @terms.each do |term| %>
       <tr>
@@ -17,6 +18,7 @@
         <td class="col-md-1"><%= term.term %></td>
         <td class="col-md-2"><%= term.startdate %></td>
         <td class="col-md-2"><%= term.enddate %></td>
+        <td class="col-md-2"><%= term.active? ? 'Y' : 'N' %></td>
         <td class="col-md-1"><i> <%= link_to 'Edit', edit_term_path(term)%></i></td>
         <td class="col-md-1"><i> <%= link_to 'Delete', term, method: :delete, data: { confirm: "Are you sure?" } %> </i></td>
       </tr>

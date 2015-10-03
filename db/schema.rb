@@ -54,8 +54,9 @@ ActiveRecord::Schema.define(version: 20151003075137) do
     t.string   "firstname"
     t.string   "surname"
     t.date     "dob"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "current",    default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "subjects", force: :cascade do |t|
@@ -69,8 +70,9 @@ ActiveRecord::Schema.define(version: 20151003075137) do
     t.string   "term"
     t.date     "startdate"
     t.date     "enddate"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "active",     default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
 end
