@@ -4,7 +4,12 @@ class ResultsController < ApplicationController
   # GET /results
   # GET /results.json
   def index
-    @results = Result.all.order('term_id, student_id desc')
+    @results = Result.all
+    if @results.exists?
+      @report = Report.find(params[:report_id])
+      @student = Student.find(@report.student_id)
+      @term = Term.find(@report.term_id)
+    end
   end
 
   # GET /results/1
@@ -70,6 +75,6 @@ class ResultsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def result_params
-      params.require(:result).permit(:classmark, :testmark, :result_id, :subject_id, :comment)
+      params.require(:result).permit(:classmark, :testmark, :result_id, :subject_id, :report_id, :comment)
     end
 end

@@ -1,6 +1,5 @@
 <%= simple_form_for(@result,html: { autocomplete: 'off' }) do |f| %>
-  <%= f.association :term, collection: Term.order(:year), prompt: "Choose term", label: "TERM" %>
-  <%= f.association :student, collection: Student.order(:surname), prompt: "Choose student", label: "STUDENT" %>
+  <%= f.association :report, collection: Report.all, prompt: "Choose student and term", label: "STUDENT/TERM" %>
   <%= f.association :subject, collection: Subject.order(:name), prompt: "Choose subject", label: "SUBJECT" %>
   <%= f.input :classmark, label: "CLASS MARK", placeholder: "Class Mark" %>
   <%= f.input :testmark, label: "TEST MARK", placeholder: "Test Mark" %>

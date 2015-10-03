@@ -37,8 +37,18 @@ ActiveRecord::Schema.define(version: 20151003075137) do
   add_index "reports", ["student_id"], name: "index_reports_on_student_id"
   add_index "reports", ["term_id"], name: "index_reports_on_term_id"
 
-# Could not dump table "results" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "results", force: :cascade do |t|
+    t.decimal  "classmark"
+    t.decimal  "testmark"
+    t.text     "comment"
+    t.integer  "report_id"
+    t.integer  "subject_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "results", ["report_id"], name: "index_results_on_report_id"
+  add_index "results", ["subject_id"], name: "index_results_on_subject_id"
 
   create_table "students", force: :cascade do |t|
     t.string   "firstname"

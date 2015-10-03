@@ -3,9 +3,9 @@ class CreateResults < ActiveRecord::Migration
     create_table :results do |t|
       t.decimal :classmark
       t.decimal :testmark
-      t.references :student, index: true, foreign_key: true
+      t.text :comment
+      t.references :report, index: true, foreign_key: true
       t.references :subject, index: true, foreign_key: true
-      t.references :term, index: true, foreign_key: true
 
       t.timestamps null: false
     end
