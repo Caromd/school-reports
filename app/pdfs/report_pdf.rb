@@ -1,14 +1,15 @@
 class ReportPdf < Prawn::Document
   def initialize(report)
-    super()
-    @report = Report.find(1)
-#    @student = Student.find(@report.student_id)
-#    @term = Term.find(@report.term_id)
-#    @results = Result.find(@report.report_id)
-    @student = Student.find(1)
-    @term = Term.find(1)
-    @results = Result.all
-    @grade = Grade.find(1)
+    super({:page_size => 'A4'})
+    @report = Report.find(report.id)
+    @student = Student.find(report.student_id)
+    @term = Term.find(report.term_id)
+    @next_term = Term.where("startdate > ?", @term.startdate).order("startdate ASC").first
+    @results = Result.where(report_id: report.id)
+    @average_class = Result.where(report_id: report.id).average(:classmark).round
+    @average_test = Result.where(report_id: report.id).average(:testmark).round
+    @average_total = ((@average_class + @average_test) / 2).round
+    @grade = Grade.find_by(student_id: report.student_id, year: @term.year)
 
     header
     text_content
@@ -20,14 +21,13 @@ class ReportPdf < Prawn::Document
   end
 
   def header
-    #This inserts an image in the pdf file and sets the size of the image
     image "#{Rails.root}/app/assets/images/1000hillsbanner.jpg", width: 500, height: 105
   end
 
   def text_content
     # The cursor for inserting content starts on the top left of the page. 
     # Here we move it down a little to create more space between the text and the image inserted above
-    y_position = cursor - 40
+    y_position = cursor - 10
 
     # The bounding_box takes the x and y coordinates for positioning its content and some options to style it
     bounding_box([0, y_position], :width => 500, :height => 100) do
@@ -44,18 +44,22 @@ class ReportPdf < Prawn::Document
   end
 
   def item_header
-    ["Subject", "Class Mark", "Test Mark", "Comment"]
+    ["Subject", "Class Mark", "Test Mark", "Total", "Comment"]
   end
 
   def item_rows
     @results.map do |r|
       @subject = Subject.find(r.subject_id)
-      [@subject.name, r.classmark, r.testmark, r.comment]
+      [@subject.name, r.classmark.round, r.testmark.round, ((r.classmark + r.testmark)/2).round, r.comment]
     end
+  end
+  
+  def item_average
+    ["Average", @average_class, @average_test, @average_total, ""]
   end
 
   def item_table_data
-    [item_header, *item_rows] 
+    [item_header, *item_rows, item_average] 
   end
 
   def table_content
@@ -63,27 +67,30 @@ class ReportPdf < Prawn::Document
       row(0).font_style = :bold
       self.row_colors = ["DDDDDD", "FFFFFF"]
       self.header = true
+      self.cell_style = { size: 9 }
+      self.column_widths = [100,50,50,50,250]
     end
   end
-  
+
   def teacher_comment_box
-    bounding_box([0, 200], :width => 250, :height => 50) do
+    y_position = cursor - 20
+    bounding_box([0, y_position], :width => 500, :height => 100) do
       text @report.teacher_comment, size: 12
-      text @report.teacher + " (Class Teacher)", size: 12, format: :italic
-      stroke do
-        line bounds.top_left, bounds.top_right
-        line bounds.bottom_left, bounds.bottom_right
-        line bounds.top_left, bounds.bottom_left
-      end
+      move_down 10
+      text @report.teacher + " (Class Teacher)", size: 12, style: :italic
     end
   end
   
   def principal_comment_box
-    bounding_box([0, 260], :width => 250, :height => 70) do
+    y_position = cursor - 10
+    bounding_box([0, y_position], :width => 500, :height => 100) do
       text @report.principal_comment, size: 12
-      text "School reopens on " + @term.startdate.to_formatted_s(:long)
-      text "Yours faithfully"
-      text @report.principal + " (Principal)", size: 12, format: :italic
+      move_down 10
+      text "School reopens on " + @next_term.startdate.strftime("%A, #{@next_term.startdate.day.ordinalize} %B %Y") + ".", size: 12
+      move_down 10
+      text "Yours faithfully", size: 12
+      move_down 10
+      text @report.principal + " (Principal)", size: 12, style: :italic
     end
   end
 end

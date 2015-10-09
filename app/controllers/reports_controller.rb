@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
-#  before_action :set_report, only: [:show, :edit, :update, :destroy, :pdf]
-  before_action :set_report, only: [:show, :edit, :update, :destroy]
+  before_action :set_report, only: [:show, :edit, :update, :destroy, :pdf]
+#  before_action :set_report, only: [:show, :edit, :update, :destroy]
 
   # GET /reports
   # GET /reports.json
@@ -9,7 +9,6 @@ class ReportsController < ApplicationController
   end
   
   def pdf
-#    @results = Results.find_by_student_id_and_term_id(params[:student_id],params[:term_id])
     pdf = ReportPdf.new(@report)
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
   end
