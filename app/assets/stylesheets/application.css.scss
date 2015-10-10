@@ -108,3 +108,39 @@ form input[type='number']::-webkit-inner-spin-button {
 abbr[title="required"] {
   display: none;
 }
+
+/* #nested { display: inline-block; }
+form.form-inline.clearfix div.nested-fields { display: inline-block; }
+form.form-inline.clearfix div.nested-fields div.controls { display: inline-block; } */
+
+#results, #grades {
+	display: inline-block;
+	margin-bottom: 50px;
+	font-size: 11px;
+/*	ul, ol {
+		padding-left: 18px;
+		li {
+			padding: 1em 0;
+			border-bottom: 1px solid #EAEAEA;
+		}
+	} */
+}
+
+#result_fields {font-size: 11px };
+
+.form-inline {
+	margin-top: 15px;
+	display: inline-block;
+}
+.form-input {
+	width: 65% !important;
+	float: left;
+}
+.form-button {
+	float: left;
+	width: 30% !important;
+	margin-left: 5%;
+}
+.add-button {
+	margin-top: 25px;
+}

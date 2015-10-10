@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resources :terms
   resources :subjects
   resources :students
-  
   resources :students
 #  do
 #    member do
