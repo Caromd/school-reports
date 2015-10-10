@@ -1,34 +1,40 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Teacher:</strong>
-  <%= @report.teacher %>
-</p>
-
-<p>
-  <strong>Teacher comment:</strong>
-  <%= @report.teacher_comment %>
-</p>
-
-<p>
-  <strong>Principal:</strong>
-  <%= @report.principal %>
-</p>
-
-<p>
-  <strong>Principal comment:</strong>
-  <%= @report.principal_comment %>
-</p>
+<h1>ADD RESULTS</h1>
 
 <p>
   <strong>Student:</strong>
-  <%= @report.student %>
+  <%= @report.student_id %>
 </p>
 
 <p>
   <strong>Term:</strong>
-  <%= @report.term %>
+  <%= @report.term_id %>
 </p>
 
-<%= link_to 'Edit', edit_report_path(@report) %> |
+<br>
+<%= simple_form_for(@report) do |f| %>
+  <div class="row">
+    <div class="col-md-12">
+      <div id="results">
+        <table class="table table-hover table-striped">
+          <thead>
+            <th class="col-md-2">Subject</th>
+            <th class="col-md-1">Mark 1</th>
+            <th class="col-md-1">Mark 2</th>
+            <th class="col-md-5">Comment</th>
+          </thead>
+          <tbody id="result_fields">
+            <%= f.simple_fields_for :results, :html => { :class => 'form-horizontal' } do |results| %>
+              <%= render 'result_fields', f: results %>
+            <% end %>
+            <br>
+          </tbody>
+        </table>
+        <div class="links">
+          <%= link_to_add_association 'Add Result', f, :results, id: "button" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <%= link_to 'Back', reports_path %>

@@ -10,30 +10,6 @@
     <%= f.input :principal_comment %>
   </div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <h3>RESULTS</h3>
-      <div id="results">
-        <table class="table table-hover table-striped">
-          <thead>
-            <th class="col-md-2">Subject</th>
-            <th class="col-md-1">Mark 1</th>
-            <th class="col-md-1">Mark 2</th>
-            <th class="col-md-5">Comment</th>
-          </thead>
-          <tbody id="result_fields">
-            <%= f.simple_fields_for :results, :html => { :class => 'form-horizontal' } do |results| %>
-              <%= render 'result_fields', f: results %>
-            <% end %>
-          </tbody>
-        </table>
-        <br>
-        <div class="links">
-          <%= link_to_add_association 'Add Result', f, :results, id: "button" %>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <div class="form-actions">
     <%= f.button :submit, :id => "button" %>

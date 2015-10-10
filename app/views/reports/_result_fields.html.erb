@@ -1,4 +1,4 @@
-    <tr class="fields">
+    <tr class="nested_fields">
       <td class="col-md-2"><%= f.association :subject, collection: Subject.order(:name), prompt: "Choose subject", label: false, :label_html => { :id => 'result_field' } %></td>
       <td class="col-md-1"><%= f.input :classmark, label: false, placeholder: "Mark 1" %></td>
       <td class="col-md-1"><%= f.input :testmark, label: false, placeholder: "Mark 2" %></td>

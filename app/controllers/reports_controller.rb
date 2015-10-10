@@ -10,6 +10,13 @@ class ReportsController < ApplicationController
   
   def pdf
     pdf = ReportPdf.new(@report)
+#    @student = Student.find(@report.student_id)
+#    @term = Term.find(@report.term_id)
+#    filename = File.join(@student.firstname, "_" , @student.surname , "_" , @term.year , "_" , @term.term , ".pdf")
+#    filename = @student.firstname + "_" + @student.surname + "_" + @term.year + "_" + @term.term + ".pdf"
+#    pdf.render_file filename
+#    @filename = @student.firstname + "_" + @student.surname + "_" + @term.year + "_" + @term.term + ".pdf"
+#    send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
   end
 
