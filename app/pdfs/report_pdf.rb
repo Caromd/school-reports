@@ -44,13 +44,14 @@ class ReportPdf < Prawn::Document
   end
 
   def item_header
-    ["Subject", "Class Mark", "Test Mark", "Total", "Comment"]
+    ["Subject", "Mark 1", "Mark 2", "Total", "Comment"]
   end
 
   def item_rows
     @results.map do |r|
       @subject = Subject.find(r.subject_id)
-      [@subject.name, r.classmark.round, r.testmark.round, ((r.classmark + r.testmark)/2).round, r.comment]
+      subject_total = (r.classmark * @subject.mark1_percentage / 100) + (r.testmark * @subject.mark2_percentage / 100)
+      [@subject.name, r.classmark.round, r.testmark.round, subject_total.round, r.comment]
     end
   end
   

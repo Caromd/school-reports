@@ -9,8 +9,8 @@
       <th><%= "TERM" %></th>
       <th><%= "STUDENT" %></th>
       <th><%= "SUBJECT" %></th>
-      <th><%= "CLASS MARK" %></th>
-      <th><%= "TEST MARK" %></th>
+      <th><%= "MARK 1" %></th>
+      <th><%= "MARK 2" %></th>
     </tr>
     <% @results.each do |result| %>
       <% @student = Student.find(result.report.student_id) %>

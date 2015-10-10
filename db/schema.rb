@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151003075137) do
+ActiveRecord::Schema.define(version: 20151010094659) do
 
   create_table "grades", force: :cascade do |t|
     t.string   "grade"
@@ -61,8 +61,12 @@ ActiveRecord::Schema.define(version: 20151003075137) do
 
   create_table "subjects", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "mark1_label"
+    t.integer  "mark1_percentage"
+    t.string   "mark2_label"
+    t.integer  "mark2_percentage"
   end
 
   create_table "terms", force: :cascade do |t|
