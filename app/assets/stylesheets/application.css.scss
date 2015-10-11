@@ -116,7 +116,7 @@ form.form-inline.clearfix div.nested-fields div.controls { display: inline-block
 #results, #grades {
 	display: inline-block;
 	margin-bottom: 50px;
-	font-size: 11px;
+/*	font-size: 11px;*/
 /*	ul, ol {
 		padding-left: 18px;
 		li {
@@ -125,9 +125,9 @@ form.form-inline.clearfix div.nested-fields div.controls { display: inline-block
 		}
 	} */
 }
-
-#result_fields {font-size: 11px };
-
+.nested_fields{font-size: 11px};
+/*#result_fields {font-size: 11px };*/
+/*
 .form-inline {
 	margin-top: 15px;
 	display: inline-block;
@@ -143,4 +143,4 @@ form.form-inline.clearfix div.nested-fields div.controls { display: inline-block
 }
 .add-button {
 	margin-top: 25px;
-}
+} */

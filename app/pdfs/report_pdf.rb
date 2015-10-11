@@ -8,7 +8,7 @@ class ReportPdf < Prawn::Document
     @results = Result.where(report_id: report.id)
     @average_class = Result.where(report_id: report.id).average(:classmark).round
     @average_test = Result.where(report_id: report.id).average(:testmark).round
-    @average_total = ((@average_class + @average_test) / 2).round
+    @average_total = ((@average_class + @average_test) / 2).round  # this is incorrect, needs to use percentages
     @grade = Grade.find_by(student_id: report.student_id, year: @term.year)
 
     header

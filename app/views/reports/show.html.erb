@@ -1,26 +1,16 @@
-<h1>ADD RESULTS</h1>
+<h3>RESULTS FOR <%= @report.student.firstname.upcase + " " + @report.student.surname.upcase + ", TERM " + @report.term.term + " " + @report.term.year %></h3>
 
-<p>
-  <strong>Student:</strong>
-  <%= @report.student_id %>
-</p>
-
-<p>
-  <strong>Term:</strong>
-  <%= @report.term_id %>
-</p>
-
-<br>
 <%= simple_form_for(@report) do |f| %>
   <div class="row">
     <div class="col-md-12">
       <div id="results">
-        <table class="table table-hover table-striped">
+        <table class="table">
           <thead>
-            <th class="col-md-2">Subject</th>
-            <th class="col-md-1">Mark 1</th>
-            <th class="col-md-1">Mark 2</th>
+            <th class="col-md-3">Subject</th>
+            <th class="col-md-1">Mark1</th>
+            <th class="col-md-1">Mark2</th>
             <th class="col-md-5">Comment</th>
+            <th class="col-md-1">  </th>
           </thead>
           <tbody id="result_fields">
             <%= f.simple_fields_for :results, :html => { :class => 'form-horizontal' } do |results| %>
@@ -35,6 +25,9 @@
       </div>
     </div>
   </div>
+<div class="form-actions">
+  <%= f.button :submit, :id => "button" %>
+</div>
 <% end %>
-
+<br>
 <%= link_to 'Back', reports_path %>
