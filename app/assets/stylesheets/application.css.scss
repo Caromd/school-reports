@@ -118,12 +118,6 @@ textarea {
    resize: none;
 }
 
-@for $i from 0 through 10 {
-    #report_results_attributes_#{$i}_comment,
-    #report_results_attributes_#{$i}_classmark,
-    #report_results_attributes_#{$i}_testmark,
-    #report_results_attributes_#{$i}_subject_id
-    {
-        font-size: 11px;
-    }
+[id*="report_results_attributes_"] {
+	font-size: 11px;
 }

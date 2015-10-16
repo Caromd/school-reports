@@ -8,8 +8,9 @@ class ReportPdf < Prawn::Document
     @results = Result.where(report_id: report.id)
     @average_class = Result.where(report_id: report.id).average(:classmark).round
     @average_test = Result.where(report_id: report.id).average(:testmark).round
-    @average_total = ((@average_class + @average_test) / 2).round  # this is incorrect, needs to use percentages
     @grade = Grade.find_by(student_id: report.student_id, year: @term.year)
+    @grand_total = 0
+    @number_of_subjects = 0
 
     header
     text_content
@@ -21,7 +22,7 @@ class ReportPdf < Prawn::Document
   end
 
   def header
-    image "#{Rails.root}/app/assets/images/1000hillsbanner.jpg", width: 500, height: 105
+    image "#{Rails.root}/app/assets/images/MARKSLOGO.png", width: 500, height: 105
   end
 
   def text_content
@@ -51,12 +52,15 @@ class ReportPdf < Prawn::Document
     @results.map do |r|
       @subject = Subject.find(r.subject_id)
       subject_total = (r.classmark * @subject.mark1_percentage / 100) + (r.testmark * @subject.mark2_percentage / 100)
+      @grand_total = @grand_total + subject_total
+      @number_of_subjects = @number_of_subjects + 1
       [@subject.name, r.classmark.round, r.testmark.round, subject_total.round, r.comment]
     end
   end
   
   def item_average
-    ["Average", @average_class, @average_test, @average_total, ""]
+    @average_total = @grand_total / @number_of_subjects
+    ["Average", @average_class, @average_test, @average_total.round, ""]
   end
 
   def item_table_data
