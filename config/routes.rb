@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   resources :reports
   resources :results
   resources :terms
   resources :subjects
   resources :students
-  resources :students
+  
 #  do
 #    member do
 #      get :grades

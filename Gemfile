@@ -19,6 +19,8 @@ gem 'prawn', '~> 2.0.2'
 gem 'prawn-table', '~> 0.2.2'
 # Cocoon for nested forms (grades nested within students)
 gem 'cocoon', '~> 1.2.6'
+# Devise for user authentication
+gem 'devise', '~> 3.5.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

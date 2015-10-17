@@ -21,9 +21,18 @@
         <%= link_to "SUBJECTS", subjects_path %>
         <%= link_to "TERMS", terms_path %>
         <%= link_to "REPORTS", reports_path %>
+        <% if user_signed_in? %>
+          <%= link_to('EDIT USER', edit_user_registration_path) %>
+          <%= link_to('LOG OUT', destroy_user_session_path, :method => :delete) %>        
+        <% else %>
+          <%= link_to "SIGN UP", new_user_registration_path %>
+          <%= link_to('LOG IN', new_user_session_path)  %>
+        <% end %>
       </nav>
     </div>
   </header>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
   <div class="wrapper">
     <%= yield %>
   </div>

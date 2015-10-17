@@ -1,5 +1,6 @@
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy, :pdf]
+  before_action :authenticate_user!
 #  before_action :set_report, only: [:show, :edit, :update, :destroy]
 
   # GET /reports
