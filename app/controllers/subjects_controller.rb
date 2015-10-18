@@ -5,7 +5,7 @@ class SubjectsController < ApplicationController
   # GET /subjects
   # GET /subjects.json
   def index
-    @subjects = Subject.all.order('name asc')
+    @subjects = current_user.subjects.all.order('name asc')
   end
 
   # GET /subjects/1

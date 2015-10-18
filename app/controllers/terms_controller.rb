@@ -5,7 +5,7 @@ class TermsController < ApplicationController
   # GET /terms
   # GET /terms.json
   def index
-    @terms = Term.all.order('year,term asc')
+    @terms = current_user.terms.all.order('year,term asc')
   end
 
   # GET /terms/1

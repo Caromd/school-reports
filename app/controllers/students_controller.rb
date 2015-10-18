@@ -5,7 +5,7 @@ class StudentsController < ApplicationController
   # GET /students
   # GET /students.json
   def index
-    @students = Student.all.order('firstname asc')
+    @students = current_user.students.all.order('firstname asc')
   end
 
   # GET /students/1

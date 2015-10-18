@@ -1,6 +1,7 @@
 class Report < ActiveRecord::Base
   belongs_to :student
   belongs_to :term
+  belongs_to :user
   has_many :results, :dependent => :destroy
   accepts_nested_attributes_for :results, reject_if: :all_blank, allow_destroy: true
   def to_label
