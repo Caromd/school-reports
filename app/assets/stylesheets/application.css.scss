@@ -118,6 +118,11 @@ textarea {
    resize: none;
 }
 
+select#result_fields.select.required.form-control {width: 100px; font-size: 11px;}
+input#result_fields.numeric.decimal.required.form-control {width: 50px; font-size: 11px;}
+textarea#result_fields.text.optional.form-control {width: 300px; font-size: 11px;}
+
 [id*="report_results_attributes_"] {
 	font-size: 11px;
+	size: 10px;
 }

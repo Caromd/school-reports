@@ -6,13 +6,6 @@
     <div class="col-md-12">
       <div id="results">
         <table class="table">
-          <thead>
-            <th class="col-md-2">Subject</th>
-            <th class="col-md-1">Mark1</th>
-            <th class="col-md-1">Mark2</th>
-            <th class="col-md-6">Comment</th>
-            <th class="col-md-1">  </th>
-          </thead>
           <tbody id="result_fields">
             <%= f.simple_fields_for :results, :html => { :class => 'form-horizontal' } do |results| %>
               <%= render 'result_fields', f: results %>
