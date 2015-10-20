@@ -1,7 +1,11 @@
 <%= simple_form_for(@student,html: { autocomplete: 'off' }) do |f| %>
   <%= f.input :firstname, label: "First Name", placeholder: "Enter First Name" %>
   <%= f.input :surname, label: "Surname", placeholder: "Enter Surname" %>
-  <%= f.input :dob, label: "Date of Birth", as: :date, start_year: Date.today.year - 18, end_year: Date.today.year - 6, order: [:day, :month, :year] %>
+  <%= f.input :dob, label: "Date of Birth", as: :date, 
+                    start_year: Date.today.year - 18, 
+                    end_year: Date.today.year - 6, 
+                    default: Date.today.beginning_of_year,
+                    order: [:day, :month, :year] %>
   <%= f.input :current, label: "Current Student", as: :boolean, checked_value: true, unchecked_value: false %>
 
   <h3>GRADES</h3>
