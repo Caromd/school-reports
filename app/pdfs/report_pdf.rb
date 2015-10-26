@@ -11,6 +11,7 @@ class ReportPdf < Prawn::Document
     @grade = Grade.find_by(student_id: report.student_id, year: @term.year)
     @grand_total = 0
     @number_of_subjects = 0
+    @user = User.find(report.user_id)
 
     header
     text_content
@@ -22,7 +23,14 @@ class ReportPdf < Prawn::Document
   end
 
   def header
-    image "#{Rails.root}/app/assets/images/MARKSLOGO.png", width: 500, height: 105
+    y_position = cursor - 30
+    bounding_box([0, y_position], :width => 200, :height => 110) do
+      image "#{Rails.root}/app/assets/images/MARKSLOGO.png", width: 192, height: 105
+    end
+    bounding_box([210, y_position], :width => 290, :height => 110) do
+      move_down 40
+      text @user.schoolname, size: 35, style: :bold, align: :left
+    end
   end
 
   def text_content
