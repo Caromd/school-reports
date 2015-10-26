@@ -28,8 +28,8 @@ class ReportPdf < Prawn::Document
       image "#{Rails.root}/app/assets/images/MARKSLOGO.png", width: 192, height: 105
     end
     bounding_box([210, y_position], :width => 290, :height => 110) do
-      move_down 40
-      text @user.schoolname, size: 35, style: :bold, align: :left
+      move_down 30
+      text @user.schoolname, size: 25, style: :bold, align: :left
     end
   end
 
