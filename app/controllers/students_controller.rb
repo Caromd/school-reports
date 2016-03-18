@@ -15,7 +15,6 @@ class StudentsController < ApplicationController
 
   # GET /students/new
   def new
-#    @student = Student.new
      @student = current_user.students.build
   end
 
@@ -26,7 +25,6 @@ class StudentsController < ApplicationController
   # POST /students
   # POST /students.json
   def create
-#    @student = Student.new(student_params)
     @student = current_user.students.build(student_params)
 
     respond_to do |format|
