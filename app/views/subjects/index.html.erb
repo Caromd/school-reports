@@ -3,27 +3,9 @@
 <br>
 <div class="table-responsive">
   <table class="table">
-    <tr>
-      <th><%= "NAME" %></th>
-      <th><%= "MARK1" %></th>
-      <th><%= "" %></th>
-      <th><%= "MARK2" %></th>
-      <th><%= "" %></th>
-    </tr>
-    <tr>
-      <th><%= "" %></th>
-      <th><%= "LABEL" %></th>
-      <th><%= "%" %></th>
-      <th><%= "LABEL" %></th>
-      <th><%= "%" %></th>
-    </tr>
     <% @subjects.each do |subject| %>
       <tr>
         <td class="col-md-1"><%= subject.name %></td>
-        <td class="col-md-1"><%= subject.mark1_label %></td>
-        <td class="col-md-1"><%= subject.mark1_percentage %></td>
-        <td class="col-md-1"><%= subject.mark2_label %></td>
-        <td class="col-md-1"><%= subject.mark2_percentage %></td>
         <td class="col-md-1"> <i><%= link_to 'Edit', edit_subject_path(subject)%></i></td>
         <td class="col-md-1"> <i><%= link_to 'Delete', subject, method: :delete, data: { confirm: "Are you sure?" } %> </i></td>
       </tr>

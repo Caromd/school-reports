@@ -1,9 +1,4 @@
 <%= simple_form_for(@subject,html: { autocomplete: 'off' }) do |f| %>
   <%= f.input :name, label: "Name", placeholder: "Enter Subject Name" %>
-  <%= f.input :mark1_label, label: "Mark 1 Label", placeholder: "Enter Mark 1 Label" %>
-  <%= f.input :mark1_percentage, label: "Mark 1 % (integer, must add up to 100 with Mark 2)", placeholder: "Enter Mark 1 %" %>
-  <%= f.input :mark2_label, label: "Mark 2 Label", placeholder: "Enter Mark 2 Label" %>
-  <%= f.input :mark2_percentage, label: "Mark 2 %", placeholder: "Enter Mark 2 %" %>
   <%= f.button :submit, :id => "button" %>
 <% end %>
-

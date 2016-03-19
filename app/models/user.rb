@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
   has_many :subjects
   has_many :terms
   has_many :reports
+  has_many :markpercents
 end

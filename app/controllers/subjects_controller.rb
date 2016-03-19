@@ -15,8 +15,9 @@ class SubjectsController < ApplicationController
 
   # GET /subjects/new
   def new
-#    @subject = Subject.new
     @subject = current_user.subjects.build
+#    @markpercents = @subject.markpercents.build
+#    @grades = @markpercents.grades.build
   end
 
   # GET /subjects/1/edit
@@ -26,7 +27,6 @@ class SubjectsController < ApplicationController
   # POST /subjects
   # POST /subjects.json
   def create
-#    @subject = Subject.new(subject_params)
     @subject = current_user.subjects.build(subject_params)
     respond_to do |format|
       if @subject.save
@@ -42,6 +42,7 @@ class SubjectsController < ApplicationController
   # PATCH/PUT /subjects/1
   # PATCH/PUT /subjects/1.json
   def update
+    @grades = Grade.all
     respond_to do |format|
       if @subject.update(subject_params)
         format.html { redirect_to subjects_path, notice: 'Subject was successfully updated.' }
@@ -71,6 +72,9 @@ class SubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
-      params.require(:subject).permit(:name, :mark1_label, :mark1_percentage, :mark2_label, :mark2_percentage)
+      params.require(:subject).permit(:name, 
+      markpercents_attributes: [:grade_id, :mark1_label, :mark1_percentage, :mark2_label, :mark2_percentage, :_destroy,
+      grades_attributes: [:id, :name]]
+      )
     end
 end

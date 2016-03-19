@@ -59,7 +59,8 @@ class ReportPdf < Prawn::Document
   def item_rows
     @results.map do |r|
       @subject = Subject.find(r.subject_id)
-      subject_total = (r.classmark * @subject.mark1_percentage / 100) + (r.testmark * @subject.mark2_percentage / 100)
+#      subject_total = (r.classmark * @subject.mark1_percentage / 100) + (r.testmark * @subject.mark2_percentage / 100)
+    subject_total = (r.classmark * 25 / 100) + (r.testmark * 75 / 100)
       @grand_total = @grand_total + subject_total
       @number_of_subjects = @number_of_subjects + 1
       [@subject.name, r.classmark.round, r.testmark.round, subject_total.round, r.comment]

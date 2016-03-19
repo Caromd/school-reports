@@ -1,0 +1,31 @@
+<h1>MARK PERCENTAGES</h1>
+
+<br>
+<div class="table-responsive">
+  <table class="table">
+      <thead>
+        <th class="col-md-1">Subject</th>
+        <th class="col-md-1">Grade</th>
+        <th class="col-md-1">Label 1</th>
+        <th class="col-md-1">1st %</th>
+        <th class="col-md-1">Label 2</th>
+        <th class="col-md-1">2nd %</th>
+        <th class="col-md-1"></th>
+        <th class="col-md-1"></th>
+      </thead>
+    <% @markpercents.each do |markpercent| %>
+      <tr>
+        <td class="col-md-1"><%= markpercent.subject.name %></td>
+        <td class="col-md-1"><%= markpercent.grade.grade %></td>
+        <td class="col-md-1"><%= markpercent.mark1_label %></td>
+        <td class="col-md-1"><%= markpercent.mark1_percentage %></td>
+        <td class="col-md-1"><%= markpercent.mark2_label %></td>
+        <td class="col-md-1"><%= markpercent.mark2_percentage %></td>
+        <td class="col-md-1"> <i><%= link_to 'Edit', edit_markpercent_path(markpercent)%></i></td>
+        <td class="col-md-1"> <i><%= link_to 'Delete', markpercent, method: :delete, data: { confirm: "Are you sure?" } %> </i></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<br>
+<%= link_to 'New Mark %', new_markpercent_path, id: "button" %>
