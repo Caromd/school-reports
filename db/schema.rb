@@ -11,29 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160318171620) do
+ActiveRecord::Schema.define(version: 20160318143349) do
 
   create_table "grades", force: :cascade do |t|
-    t.string   "grade"
+    t.string   "name"
     t.string   "year"
     t.integer  "student_id"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_index "grades", ["student_id"], name: "index_grades_on_student_id"
+  add_index "grades", ["user_id"], name: "index_grades_on_user_id"
 
   create_table "markpercents", force: :cascade do |t|
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "subject_id"
-    t.integer  "grade_id"
     t.string   "mark1_label"
     t.integer  "mark1_percentage"
     t.string   "mark2_label"
     t.integer  "mark2_percentage"
+    t.integer  "subject_id"
+    t.integer  "grade_id"
     t.integer  "user_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
+
+  add_index "markpercents", ["grade_id"], name: "index_markpercents_on_grade_id"
+  add_index "markpercents", ["subject_id"], name: "index_markpercents_on_subject_id"
+  add_index "markpercents", ["user_id"], name: "index_markpercents_on_user_id"
 
   create_table "reports", force: :cascade do |t|
     t.string   "teacher"
@@ -42,13 +48,14 @@ ActiveRecord::Schema.define(version: 20160318171620) do
     t.text     "principal_comment"
     t.integer  "student_id"
     t.integer  "term_id"
+    t.integer  "user_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
-    t.integer  "user_id"
   end
 
   add_index "reports", ["student_id"], name: "index_reports_on_student_id"
   add_index "reports", ["term_id"], name: "index_reports_on_term_id"
+  add_index "reports", ["user_id"], name: "index_reports_on_user_id"
 
   create_table "results", force: :cascade do |t|
     t.decimal  "classmark"
@@ -56,29 +63,35 @@ ActiveRecord::Schema.define(version: 20160318171620) do
     t.text     "comment"
     t.integer  "report_id"
     t.integer  "subject_id"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_index "results", ["report_id"], name: "index_results_on_report_id"
   add_index "results", ["subject_id"], name: "index_results_on_subject_id"
+  add_index "results", ["user_id"], name: "index_results_on_user_id"
 
   create_table "students", force: :cascade do |t|
     t.string   "firstname"
     t.string   "surname"
     t.date     "dob"
     t.boolean  "current",    default: true
+    t.integer  "user_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-    t.integer  "user_id"
   end
+
+  add_index "students", ["user_id"], name: "index_students_on_user_id"
 
   create_table "subjects", force: :cascade do |t|
     t.string   "name"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "user_id"
   end
+
+  add_index "subjects", ["user_id"], name: "index_subjects_on_user_id"
 
   create_table "terms", force: :cascade do |t|
     t.string   "year"
@@ -86,10 +99,12 @@ ActiveRecord::Schema.define(version: 20160318171620) do
     t.date     "startdate"
     t.date     "enddate"
     t.boolean  "active",     default: true
+    t.integer  "user_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-    t.integer  "user_id"
   end
+
+  add_index "terms", ["user_id"], name: "index_terms_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

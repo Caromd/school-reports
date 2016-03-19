@@ -5,7 +5,7 @@ class CreateStudents < ActiveRecord::Migration
       t.string :surname
       t.date :dob
       t.boolean :current, :default => true
-
+      t.references :user, index:true, foreign_key: true
       t.timestamps null: false
     end
   end

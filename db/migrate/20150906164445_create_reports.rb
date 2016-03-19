@@ -7,7 +7,7 @@ class CreateReports < ActiveRecord::Migration
       t.text :principal_comment
       t.references :student, index: true, foreign_key: true
       t.references :term, index: true, foreign_key: true
-
+      t.references :user, index:true, foreign_key: true
       t.timestamps null: false
     end
   end

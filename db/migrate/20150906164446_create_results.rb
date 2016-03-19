@@ -6,7 +6,7 @@ class CreateResults < ActiveRecord::Migration
       t.text :comment
       t.references :report, index: true, foreign_key: true
       t.references :subject, index: true, foreign_key: true
-
+      t.references :user, index:true, foreign_key: true
       t.timestamps null: false
     end
   end

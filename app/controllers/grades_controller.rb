@@ -4,7 +4,7 @@ class GradesController < ApplicationController
   # GET /grades
   # GET /grades.json
   def index
-    @grades = Grade.find(params[:student_id])
+    @grades = current_user.grades.find(params[:student_id]).order('name asc')
   end
 
   # GET /grades/1
@@ -14,7 +14,7 @@ class GradesController < ApplicationController
 
   # GET /grades/new
   def new
-    @grade = Grade.new
+    @grade = current_user.grades.build
   end
 
   # GET /grades/1/edit
@@ -24,7 +24,7 @@ class GradesController < ApplicationController
   # POST /grades
   # POST /grades.json
   def create
-    @grade = Grade.new(grade_params)
+    @grade = current_user.grades.build(grade_params)
 
     respond_to do |format|
       if @grade.save
@@ -69,6 +69,6 @@ class GradesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def grade_params
-      params.require(:grade).permit(:grade, :year, :student_id)
+      params.require(:grade).permit(:name, :year, :student_id)
     end
 end

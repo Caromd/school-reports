@@ -16,8 +16,6 @@ class SubjectsController < ApplicationController
   # GET /subjects/new
   def new
     @subject = current_user.subjects.build
-#    @markpercents = @subject.markpercents.build
-#    @grades = @markpercents.grades.build
   end
 
   # GET /subjects/1/edit

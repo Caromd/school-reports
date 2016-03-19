@@ -3,7 +3,7 @@
 
   <div class="form-inputs">
     <%= f.association :subject, collection: current_user.subjects.order(:name), prompt: "Choose subject", label: "SUBJECT" %>
-    <%= f.association :grade, collection: Grade.order(:grade), prompt: "Choose grade", label: "GRADE" %>
+    <%= f.association :grade, collection: Grade.order(:name), prompt: "Choose grade", label: "GRADE" %>
     <%= f.input :mark1_label, label: "MARK 1 LABEL" %>
     <%= f.input :mark1_percentage, label: "MARK 1 %" %>
     <%= f.input :mark2_label, label: "MARK 2 LABEL" %>

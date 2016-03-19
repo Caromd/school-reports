@@ -6,7 +6,7 @@ class CreateTerms < ActiveRecord::Migration
       t.date :startdate
       t.date :enddate
       t.boolean :active, :default => true
-
+      t.references :user, index:true, foreign_key: true
       t.timestamps null: false
     end
   end
