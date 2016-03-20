@@ -9,7 +9,7 @@ class ReportsController < ApplicationController
   end
   
   def pdf
-    pdf = ReportPdf.new(@report)
+    pdf = ReportPdfLandscape.new(@report)
 #    @student = Student.find(@report.student_id)
 #    @term = Term.find(@report.term_id)
 #    filename = File.join(@student.firstname, "_" , @student.surname , "_" , @term.year , "_" , @term.term , ".pdf")
