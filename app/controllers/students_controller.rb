@@ -16,10 +16,12 @@ class StudentsController < ApplicationController
   # GET /students/new
   def new
      @student = current_user.students.build
+     @levels = current_user.levels.order('name asc')
   end
 
   # GET /students/1/edit
   def edit
+    @levels = current_user.levels.order('name asc')
   end
 
   # POST /students
@@ -70,6 +72,6 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:firstname, :surname, :dob, :current, grades_attributes: [:id, :year, :name, :_destroy])
+      params.require(:student).permit(:firstname, :surname, :dob, :user_id, :current, grades_attributes: [:id, :year, :name, :level_id, :user_id, :_destroy])
     end
 end

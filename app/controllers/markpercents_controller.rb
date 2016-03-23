@@ -70,6 +70,6 @@ class MarkpercentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def markpercent_params
-      params.require(:markpercent).permit(:grade_id, :subject_id, :user_id, :mark1_label, :mark1_percentage, :mark2_label, :mark2_percentage) 
+      params.require(:markpercent).permit(:level_id, :subject_id, :user_id, :mark1_label, :mark1_percentage, :mark2_label, :mark2_percentage) 
     end
 end

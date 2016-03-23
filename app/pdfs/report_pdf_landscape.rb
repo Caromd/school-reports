@@ -9,6 +9,7 @@ class ReportPdfLandscape < Prawn::Document
     @average_class = Result.where(report_id: report.id).average(:classmark).round
     @average_test = Result.where(report_id: report.id).average(:testmark).round
     @grade = Grade.find_by(student_id: report.student_id, year: @term.year)
+    @level = Level.find_by_id(@grade.level_id)
     @grand_total = 0
     @number_of_subjects = 0
     @user = User.find(report.user_id)
@@ -43,7 +44,7 @@ class ReportPdfLandscape < Prawn::Document
     bounding_box([300, y_position], :width => 300, :height => 110) do
       move_down 10
       text "TERM " + @term.term + " " + @term.year, size: 20, style: :bold, align: :center
-      text "GRADE " + @grade.name, size: 20, style: :bold, align: :center
+      text "GRADE " + @level.name, size: 20, style: :bold, align: :center
       text @student.firstname + " " + @student.surname, size: 25, style: :bold, align: :center
       move_down 10
       stroke do
@@ -60,7 +61,7 @@ class ReportPdfLandscape < Prawn::Document
   def item_rows
     @results.map do |r|
       @subject = Subject.find(r.subject_id)
-      @markpercent = Markpercent.find_by(grade_id: @grade.id, subject_id: r.subject_id)
+      @markpercent = Markpercent.find_by(level_id: @level.id, subject_id: r.subject_id)
       subject_total = (r.classmark * @markpercent.mark1_percentage / 100) + (r.testmark * @markpercent.mark2_percentage / 100)
       @grand_total = @grand_total + subject_total
       @number_of_subjects = @number_of_subjects + 1

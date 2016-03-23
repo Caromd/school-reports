@@ -1,0 +1,4 @@
+<%= simple_form_for(@level,html: { autocomplete: 'off' }) do |f| %>
+  <%= f.input :name, label: "Name", placeholder: "Enter Level Name" %>
+  <%= f.button :submit, :id => "button" %>
+<% end %>

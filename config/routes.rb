@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :subjects
   resources :students
   resources :markpercents
+  resources :levels
 #  do
 #    member do
 #      get :grades

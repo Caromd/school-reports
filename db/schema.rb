@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160318143349) do
+ActiveRecord::Schema.define(version: 20160323095916) do
 
   create_table "grades", force: :cascade do |t|
     t.string   "name"
@@ -20,10 +20,21 @@ ActiveRecord::Schema.define(version: 20160318143349) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "level_id"
   end
 
+  add_index "grades", ["level_id"], name: "index_grades_on_level_id"
   add_index "grades", ["student_id"], name: "index_grades_on_student_id"
   add_index "grades", ["user_id"], name: "index_grades_on_user_id"
+
+  create_table "levels", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "levels", ["user_id"], name: "index_levels_on_user_id"
 
   create_table "markpercents", force: :cascade do |t|
     t.string   "mark1_label"
@@ -31,13 +42,13 @@ ActiveRecord::Schema.define(version: 20160318143349) do
     t.string   "mark2_label"
     t.integer  "mark2_percentage"
     t.integer  "subject_id"
-    t.integer  "grade_id"
     t.integer  "user_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "level_id"
   end
 
-  add_index "markpercents", ["grade_id"], name: "index_markpercents_on_grade_id"
+  add_index "markpercents", ["level_id"], name: "index_markpercents_on_level_id"
   add_index "markpercents", ["subject_id"], name: "index_markpercents_on_subject_id"
   add_index "markpercents", ["user_id"], name: "index_markpercents_on_user_id"
 

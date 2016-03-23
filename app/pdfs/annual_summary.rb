@@ -4,6 +4,7 @@ class AnnualSummary < Prawn::Document
     @terms = Term.where(year: '2016')
     @grade = Grade.find_by(name: '12', year: '2016')
     @grades = Grade.where(name: '12', year: '2016')
+    @markpercents = Markpercent.where(grade_id: @grade.id)
 #    @students = Student.where(id: @grade.student_id)
 #    @reports = Report.where(student_id: @students.id, term_id: @terms.id)
 #    @results = Result.where(report_id: @reports.id)
@@ -28,19 +29,23 @@ write_data
   end
 
 def write_data
-  text "GRADE " + @grade.name
-  @grades.map do |g|
-    text "STUDENT ID " + g.student_id.to_s
-    @student = Student.find_by_id(g.student_id)
-    text "STUDENT NAME " + @student.firstname
-    @terms.map do |t|
-      text "TERM...." + t.term
-      @report = Report.find_by(student_id: g.student_id, term: t.term)
-      text "REPORT......" + @report.id.to_s
-      @results = Result.where(report_id: @report.id)
-      @results.map do |r|
-        @subject = Subject.find_by_id(r.subject_id)
-        text "RESULTS.........." + r.classmark.to_s + ' ' + @subject.name
+  text @user.schoolname, size: 25, style: :bold, align: :center
+  text "GRADE " + @grade.name, size: 20, style: :bold, align: :center
+  @markpercents.map do |m|
+    @subject = Subject.find_by_id(m.subject_id)
+    text "SUBJECT " + @subject.name
+
+    @grades.map do |g|
+      text "STUDENT ID " + g.student_id.to_s
+      @student = Student.find_by_id(g.student_id)
+      text "STUDENT NAME " + @student.firstname
+      @terms.map do |t|
+        text "TERM...." + t.term
+        @report = Report.find_by(student_id: g.student_id, term_id: t.id)
+        @results = Result.where(report_id: @report.id, subject_id: m.subject_id)
+        @results.map do |r|
+          text "RESULTS.........." + r.classmark.to_s + ' ' + @subject.name
+        end
       end
     end
   end

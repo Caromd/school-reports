@@ -1,7 +1,7 @@
 <div class="form-inline table">
   <div class="nested-fields">
       <%= f.input :year, prompt: "Year", :collection => ['2015','2016','2017','2018'], label: false,:label_html => { :id => 'result_field' }  %>
-      <%= f.input :name, prompt: "Grade", collection: '1'..'12', label: false %>
+      <%= f.input :level_id, prompt: "Grade", collection: @levels.order(:name), label: false %>
       <%= link_to_remove_association "Remove", f, id: "button" %>
   </div>
 </div>

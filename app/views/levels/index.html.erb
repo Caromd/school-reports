@@ -1,0 +1,16 @@
+<h1>LEVELS</h1>
+
+<br>
+<div class="table-responsive">
+  <table class="table">
+    <% @levels.each do |level| %>
+      <tr>
+        <td class="col-md-1"><%= level.name %></td>
+        <td class="col-md-1"> <i><%= link_to 'Edit', edit_level_path(level)%></i></td>
+        <td class="col-md-1"> <i><%= link_to 'Delete', level, method: :delete, data: { confirm: "Are you sure?" } %> </i></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<br>
+<%= link_to 'New Level', new_level_path, id: "button" %>
