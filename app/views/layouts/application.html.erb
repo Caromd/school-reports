@@ -22,7 +22,6 @@
         <%= link_to "MARK %S", markpercents_path %>
         <%= link_to "TERMS", terms_path %>
         <%= link_to "REPORTS", reports_path %>
-        <%= link_to "SUMMARY", summary_path %>
         <% if user_signed_in? %>
           <%= link_to('EDIT USER', edit_user_registration_path) %>
           <%= link_to('LOG OUT', destroy_user_session_path, :method => :delete) %>        

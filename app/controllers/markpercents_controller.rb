@@ -5,7 +5,7 @@ class MarkpercentsController < ApplicationController
   # GET /markpercents
   # GET /markpercents.json
   def index
-    @markpercents = current_user.markpercents.all
+    @markpercents = current_user.markpercents.order('id asc')
   end
 
   # GET /markpercents/1
