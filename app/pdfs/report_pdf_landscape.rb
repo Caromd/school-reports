@@ -13,6 +13,7 @@ class ReportPdfLandscape < Prawn::Document
     @grand_total = 0
     @number_of_subjects = 0
     @user = User.find(report.user_id)
+    @midyear = false
 
     header
     text_content
@@ -21,6 +22,24 @@ class ReportPdfLandscape < Prawn::Document
     teacher_comment_box
     principal_comment_box
     
+    # If it is the second term, then an additional page showing midterm results will be added to the report
+    if @term.term == '2'
+      @midyear = true
+      @terms = Term.where(year: @term.year, term: ['1','2'])
+      @reports = Report.where(student_id: @student.id, term_id: @terms).pluck(:id)
+      @results = Result.find_by_sql(
+        ["select subject_id, avg(testmark) as testmark, avg(classmark) as classmark from results where report_id in (?) group by subject_id", @reports])
+      @average_class = Result.where(report_id: @reports).average(:classmark).round
+      @average_test = Result.where(report_id: @reports).average(:testmark).round
+      @grand_total = 0
+      @number_of_subjects = 0
+
+      start_new_page
+      header
+      text_content
+      move_down 50
+      table_content
+    end
   end
 
   def header
@@ -43,7 +62,11 @@ class ReportPdfLandscape < Prawn::Document
     # The bounding_box takes the x and y coordinates for positioning its content and some options to style it
     bounding_box([300, y_position], :width => 300, :height => 110) do
       move_down 10
-      text "TERM " + @term.term + " " + @term.year, size: 20, style: :bold, align: :center
+      if @midyear == true
+        text "MIDYEAR " + @term.year, size: 20, style: :bold, align: :center
+      else
+        text "TERM " + @term.term + " " + @term.year, size: 20, style: :bold, align: :center
+      end
       text "GRADE " + @level.name, size: 20, style: :bold, align: :center
       text @student.firstname + " " + @student.surname, size: 25, style: :bold, align: :center
       move_down 10
@@ -55,7 +78,11 @@ class ReportPdfLandscape < Prawn::Document
   end
 
   def item_header
-    ["Subject", "", "", "", "", "Total", "Comment"]
+    if @midyear == true
+      ["Subject", "", "", "", "", "Total"]
+    else
+      ["Subject", "", "", "", "", "Total", "Comment"]
+    end
   end
 
   def item_rows
@@ -65,19 +92,33 @@ class ReportPdfLandscape < Prawn::Document
       subject_total = (r.classmark * @markpercent.mark1_percentage / 100) + (r.testmark * @markpercent.mark2_percentage / 100)
       @grand_total = @grand_total + subject_total
       @number_of_subjects = @number_of_subjects + 1
-      [@subject.name, 
-      @markpercent.mark1_label + " (" + @markpercent.mark1_percentage.to_s + "%)", 
-      r.classmark.round, 
-      @markpercent.mark2_label + " (" + @markpercent.mark2_percentage.to_s + "%)", 
-      r.testmark.round, 
-      subject_total.round, 
-      r.comment]
+      if @midyear == true
+        [@subject.name, 
+        @markpercent.mark1_label + " (" + @markpercent.mark1_percentage.to_s + "%)", 
+        r.classmark.round, 
+        @markpercent.mark2_label + " (" + @markpercent.mark2_percentage.to_s + "%)", 
+        r.testmark.round, 
+        subject_total.round]
+      else
+        [@subject.name, 
+        @markpercent.mark1_label + " (" + @markpercent.mark1_percentage.to_s + "%)", 
+        r.classmark.round, 
+        @markpercent.mark2_label + " (" + @markpercent.mark2_percentage.to_s + "%)", 
+        r.testmark.round, 
+        subject_total.round, 
+        r.comment]
+      end
+
     end
   end
   
   def item_average
     @average_total = @grand_total / @number_of_subjects
-    ["Average", "",@average_class, "", @average_test, @average_total.round, ""]
+    if @midyear == true
+      ["Average", "",@average_class, "", @average_test, @average_total.round]
+    else
+      ["Average", "",@average_class, "", @average_test, @average_total.round, ""]
+    end
   end
 
   def item_table_data
@@ -90,7 +131,11 @@ class ReportPdfLandscape < Prawn::Document
       self.row_colors = ["DDDDDD", "FFFFFF"]
       self.header = true
       self.cell_style = { size: 9 }
-      self.column_widths = [100,100,50,100,50,50,250]
+      if @midyear == true
+        self.column_widths = [100,100,50,100,50,50]
+      else
+        self.column_widths = [100,100,50,100,50,50,250]
+      end
     end
   end
 

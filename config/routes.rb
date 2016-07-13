@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  
   devise_for :users
   resources :reports
   resources :results
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
   resources :students
   resources :markpercents
   resources :levels
+  resources :groups
 #  do
 #    member do
 #      get :grades
@@ -23,6 +25,7 @@ Rails.application.routes.draw do
   #   get 'products/:id' => 'catalog#view'
   #get 'download' => 'students#download'
   get 'reports/:id/pdf' => 'reports#pdf', as: :pdf
+  get 'group/:id/pdf' => 'groups#pdf', as: :group_pdf
   get 'summary' => 'summary#pdf'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)

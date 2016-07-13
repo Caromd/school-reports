@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160323095916) do
+ActiveRecord::Schema.define(version: 20160712080239) do
 
   create_table "grades", force: :cascade do |t|
     t.string   "name"
@@ -26,6 +26,18 @@ ActiveRecord::Schema.define(version: 20160323095916) do
   add_index "grades", ["level_id"], name: "index_grades_on_level_id"
   add_index "grades", ["student_id"], name: "index_grades_on_student_id"
   add_index "grades", ["user_id"], name: "index_grades_on_user_id"
+
+  create_table "groups", force: :cascade do |t|
+    t.integer "user_id"
+    t.string  "name"
+  end
+
+  add_index "groups", ["user_id"], name: "index_groups_on_user_id"
+
+  create_table "groups_terms", id: false, force: :cascade do |t|
+    t.integer "group_id"
+    t.integer "term_id"
+  end
 
   create_table "levels", force: :cascade do |t|
     t.string   "name"
@@ -109,12 +121,14 @@ ActiveRecord::Schema.define(version: 20160323095916) do
     t.string   "term"
     t.date     "startdate"
     t.date     "enddate"
-    t.boolean  "active",     default: true
+    t.boolean  "active",        default: true
     t.integer  "user_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "term_group_id"
   end
 
+  add_index "terms", ["term_group_id"], name: "index_terms_on_term_group_id"
   add_index "terms", ["user_id"], name: "index_terms_on_user_id"
 
   create_table "users", force: :cascade do |t|
