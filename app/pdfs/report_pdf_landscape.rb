@@ -1,6 +1,6 @@
 class ReportPdfLandscape < Prawn::Document
   def initialize(report)
-    super({:page_size => 'A4', :page_layout => :landscape})
+    super({:page_size => 'A4', :page_layout => :landscape, :margin => [20,20,20,20] })
     @report = Report.find(report.id)
     @student = Student.find(report.student_id)
     @term = Term.find(report.term_id)
@@ -43,13 +43,13 @@ class ReportPdfLandscape < Prawn::Document
   end
 
   def header
-    y_position = cursor - 30
-    bounding_box([0, y_position], :width => 290, :height => 50) do
-      text @user.schoolname, size: 25, style: :bold, align: :left
+    y_position = cursor - 20
+    bounding_box([0, y_position], :width => 290, :height => 40) do
+      text @user.schoolname, size: 20, style: :bold, align: :left
     end
-    y_position = cursor - 5
-    bounding_box([0, y_position], :width => 200, :height => 110) do
-      image "#{Rails.root}/app/assets/images/MARKSLOGO.png", width: 192, height: 105
+    y_position = cursor
+    bounding_box([0, y_position], :width => 200, :height => 90) do
+      image "#{Rails.root}/app/assets/images/MARKSLOGO.png", width: 172, height: 85
     end
 
   end
@@ -130,22 +130,22 @@ class ReportPdfLandscape < Prawn::Document
       row(0).font_style = :bold
       self.row_colors = ["DDDDDD", "FFFFFF"]
       self.header = true
-      self.cell_style = { size: 9 }
+      self.cell_style = { size: 8 }
       if @midyear == true
         self.column_widths = [100,100,50,100,50,50]
       else
-        self.column_widths = [100,100,50,100,50,50,250]
+        self.column_widths = [100,100,50,100,50,50,350]
       end
     end
   end
 
   def teacher_comment_box
     y_position = cursor - 20
-    bounding_box([0, y_position], :width => 300, :height => 100) do
+    bounding_box([0, y_position], :width => 350, :height => 100) do
       move_down 10
-      text @report.teacher_comment, size: 12
+      text @report.teacher_comment, size: 10
       move_down 10
-      text @report.teacher + " (Class Teacher)", size: 12, style: :italic
+      text @report.teacher + " (Class Teacher)", size: 11, style: :italic
       move_down 10
       stroke do
         line bounds.top_left, bounds.top_right
@@ -157,15 +157,15 @@ class ReportPdfLandscape < Prawn::Document
   
   def principal_comment_box
     y_position = cursor + 100
-    bounding_box([400, y_position], :width => 300, :height => 100) do
+    bounding_box([400, y_position], :width => 350, :height => 100) do
       move_down 10
-      text @report.principal_comment, size: 12
+      text @report.principal_comment, size: 10
       move_down 10
       unless @next_term.nil?
       text "School reopens on " + @next_term.startdate.strftime("%A, #{@next_term.startdate.day.ordinalize} %B %Y") + ".", size: 12
       end
       move_down 10
-      text @report.principal + " (Principal)", size: 12, style: :italic
+      text @report.principal + " (Principal)", size: 11, style: :italic
       stroke do
         line bounds.top_left, bounds.top_right
         line bounds.bottom_left, bounds.bottom_right
